@@ -96,7 +96,11 @@ return {
 					},
 					options = {
 						nixos = {
-							expr = '(builtins.getFlake "' .. flake .. '").nixosConfigurations.' .. hostname .. ".options",
+							expr = '(builtins.getFlake "'
+								.. flake
+								.. '").nixosConfigurations.'
+								.. hostname
+								.. ".options",
 						},
 					},
 				},
@@ -127,7 +131,9 @@ return {
 		vim.lsp.enable("rust_analyzer")
 		vim.lsp.config("rust_analyzer", {
 			capabilities = capabilities,
-			on_attach = function(client, bufnr) vim.lsp.inlay_hint.enable(true, { bufnr = bufnr }) end,
+			on_attach = function(client, bufnr)
+				vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+			end,
 			settings = {
 				["rust-analyzer"] = {
 					imports = {
@@ -170,7 +176,9 @@ return {
 			on_attach = function(client, bufnr)
 				vim.api.nvim_create_autocmd("BufWritePost", {
 					pattern = { "*.js", "*.ts" },
-					callback = function(ctx) client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match }) end,
+					callback = function(ctx)
+						client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+					end,
 				})
 			end,
 		})
