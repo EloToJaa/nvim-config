@@ -5,6 +5,7 @@ return {
 		local lint = require("lint")
 
 		lint.linters.eslint_d = {
+			name = "eslint_d",
 			cmd = "eslint_d", -- command to run eslint_d
 			args = {
 				"--stdin",
@@ -33,9 +34,13 @@ return {
 
 		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
 			group = lint_augroup,
-			callback = function() lint.try_lint() end,
+			callback = function()
+				lint.try_lint()
+			end,
 		})
 
-		vim.keymap.set("n", "<leader>l", function() lint.try_lint() end, { desc = "Trigger linting for current file" })
+		vim.keymap.set("n", "<leader>l", function()
+			lint.try_lint()
+		end, { desc = "Trigger linting for current file" })
 	end,
 }
